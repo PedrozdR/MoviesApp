@@ -9,11 +9,6 @@ export const Container = styled.ScrollView.attrs(() => ({
   margin-top:${ getStatusBarHeight(true)}px;
 `
 
-export const Row = styled.View`
-  flex-direction:row;
-  align-items:center;
-  justify-content:center;
-`
 
 export const Movie = {
   Image: styled.Image.attrs(() => ({
@@ -38,6 +33,12 @@ export const Movie = {
     color: ${({ theme }) => theme.colors.primary};
     margin-right: 12px;
   `,
+
+  Overview: styled.Text`
+    font-size: 16px;
+    color: ${({ theme }) => theme.colors.text};
+    text-align:justify;
+  `,
   Text: styled.Text`
     font-size: 16px;
     color: ${({ theme }) => theme.colors.text};
@@ -52,26 +53,39 @@ export const Movie = {
     border-radius:3px;
     background: ${({ theme }) => theme.colors.primary};
     margin-bottom: 14px;
-  `
+  `,
 };
+
+export const Infos = {
+  Container: styled.View`
+    flex-direction:row;
+    align-items:center;
+    margin: 18px 0px;
+  `,
+  Content: styled.View`
+    flex-direction:row;
+    align-items:center;
+    margin-right: 16px;
+  `
+}
 
 export const Genres = {
   Container: styled.View`
     flex-direction:row;
     align-items:center;
     flex-wrap: wrap;
-    margin: 20px 0px;
+    margin: 12px 0px;
   `,
   Box: styled.View`
     align-items:center;
     justify-content:center;
     padding:8px 12px;
     border-radius: 8px;
-    margin-right: 8px;
+    margin: 8px 8px 0px 0px;
     background:${({ theme }) => theme.colors.primary}
   `,
   Title: styled.Text`
-    color: ${({ theme }) => theme.colors.text}
+    color: #fff
   `
 }
 

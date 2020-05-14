@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Movie, Container, Row, Genres } from './styles';
+import { Header, Movie, Container, Genres, Infos } from './styles';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { IMovie, IDetails } from 'src/services/models';
 import MovieService from "../../services/movies";
+import moment from 'moment';
 
 
 type DetailsParams = {
@@ -50,19 +51,25 @@ export default function Details() {
             <Movie.Title>{details.title}</Movie.Title>
             <Movie.Text children={details.tagline} />
 
-            <Row style={{ marginVertical: 16 }}>
+            <Infos.Container >
 
-              <Row style={{ marginRight: 16 }}>
+              <Infos.Content >
                 <Movie.Icon name="calendar-alt" solid={true} />
-                <Movie.Text children={details.release_date} />
-              </Row>
+                <Movie.Text children={moment(details.release_date).format("DD/MM/YYYY")} />
+              </Infos.Content>
 
-              <Row>
+              <Infos.Content>
                 <Movie.Icon name="clock" solid={false} />
                 <Movie.Text children={`${Math.floor(details.runtime / 60)}h ${details.runtime % 60} min`} />
-              </Row>
+              </Infos.Content>
 
-            </Row>
+              <Infos.Content >
+                <Movie.Icon name="star" solid={true} />
+                <Movie.Text children={details.vote_average} />
+              </Infos.Content>
+
+
+            </Infos.Container>
 
             <Movie.Section children="Sonopse" />
             <Movie.SectionBorder />
@@ -70,21 +77,18 @@ export default function Details() {
             {details.overview === "" ? (
               <Movie.Text children={`O filme ${details.title} não possui sinopse cadastrada`} />
             ) : (
-                <Movie.Text children={details.overview} />
+                <Movie.Overview children={details.overview} />
               )
             }
 
-            <Movie.Text children={details.overview} />
+
             <Genres.Container>
               {details.genres.map(genre => (
-                <Genres.Box>
+                <Genres.Box key={genre.id}>
                   <Genres.Title children={genre.name} />
                 </Genres.Box>
               ))}
-
-
             </Genres.Container>
-
 
           </Movie.Content>
 
