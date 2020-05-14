@@ -1,0 +1,2 @@
+//TODO - Arrumar cards que não possuam thumb
+//TODO - Inserir texto para quando não possuir informação do backend
